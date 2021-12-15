@@ -57,7 +57,7 @@ public class GameObject {
 		return hitbox;
 	}
 
-	public void move(int x, int y) {
+	public void move(double x, double y) {
 		this.x+=x;
 		this.y+=y;
 	}

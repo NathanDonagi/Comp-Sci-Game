@@ -57,17 +57,12 @@ public class Scene {
 	}
 	public void updatePositions() {
 		for(int i =0; i<entities.size(); i++) {
-			for(int j=(i+1); j<entities.size(); j++) {
-				entities.get(i).y+=entities.get(i).yVelocity;
-				entities.get(i).x+=entities.get(i).xVelocity;
-			}
+			entities.get(i).move(entities.get(i).xVelocity,entities.get(i).yVelocity);
 		}
 		
 		if(player.getGameObject().y<200) {
-			System.out.println(player.getGameObject().yVelocity);
 			player.getGameObject().yVelocity+=.1;
 		}else {
-			System.out.println(false);
 			player.getGameObject().y=200;
 		}
 		;

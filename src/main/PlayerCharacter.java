@@ -36,7 +36,7 @@ public class PlayerCharacter {
 			object.move(4,0);
 		}
 		if(movement=="up") {
-			object.move(0,-50);
+			object.yVelocity=-2;
 		}
 		if(movement=="down") {
 			object.move(0,4);
