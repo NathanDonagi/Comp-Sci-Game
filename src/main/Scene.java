@@ -16,9 +16,9 @@ public class Scene {
 		this.background = new Background(0,backgroundPath);
 		this.entities = entities;
 		//addEntity(5,100);
-		//addEntity(50,100);
-		//addEntity(200,100);
-		//addEntity(5,200);
+		addEntity(50,100,"block");
+		addEntity(200,20,"block");
+		addEntity(5,200,"block");
 		addEntity(100,22,"block");
 		addEntity(player = new PlayerCharacter(100,100,"player"));
 		

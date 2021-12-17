@@ -30,13 +30,16 @@ public class PlayerCharacter {
 	}
 	public void move(String movement) {
 		if(movement=="left") {
-			object.move(-4,0);
+			//object.move(-3,0);
+			object.xVelocity=-3;
 		}
 		if(movement=="right") {
-			object.move(4,0);
+			//object.move(3,0);
+			object.xVelocity=3;
 		}
 		if(movement=="up") {
-			object.yVelocity=-2;
+			//object.move(0,-4);
+			object.yVelocity=-5;
 		}
 		if(movement=="down") {
 			object.move(0,4);

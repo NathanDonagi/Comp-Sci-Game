@@ -32,7 +32,7 @@ public class GameObject {
 
 	public boolean checkCollision(GameObject otherObject) {
 		double[] collision = hitbox.calcCollision(this,otherObject);
-		System.out.println(Arrays.toString(collision));
+		//System.out.println(Arrays.toString(collision));
 		if(collision[0]!=0 && collision[1]!=0) {
 			this.collide(collision,true);
 			otherObject.collide(collision,false);
@@ -43,10 +43,11 @@ public class GameObject {
 	
 	//indicator is 1 if this is the primary collision object, -1 if its the secondary object
 	public void collide(double[] collision, boolean indicator) {
-		if(indicator) {
-			this.x-=collision[0];
-			this.y-=collision[1];
-		}
+			System.out.println("true");
+			this.x-=xVelocity;
+			this.y-=yVelocity;
+			xVelocity=0;
+			yVelocity=0;
 	}
 	public void updateVelocity(double x, double y) {
 		xVelocity+=x;

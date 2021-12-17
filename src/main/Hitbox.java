@@ -37,23 +37,26 @@ public class Hitbox {
 		otherCoords[2]+=otherObject.x;
 		otherCoords[3]+=otherObject.y;
 		
-		System.out.println(Arrays.toString(coords) + Arrays.toString(otherCoords));
+		//System.out.println(Arrays.toString(coords) + Arrays.toString(otherCoords));
 		
 		if(coords[2]>otherCoords[0] && coords[2]<=otherCoords[2]) {
 			if(coords[3]>otherCoords[1] && coords[3]<=otherCoords[3]) {
 				System.out.println("colliding");
-				return new double[]{-1,-1,-1,-1};
+				return new double[]{-1,-1};
 			}
 			if(coords[1]>otherCoords[1] && coords[1]<otherCoords[3]){
 				System.out.println("colliding");
+				return new double[]{-1,-1};
 			}
 		}
 		if(coords[0]>otherCoords[0] && coords[0]<=otherCoords[2]) {
 			if(coords[3]>otherCoords[1] && coords[3]<otherCoords[3]) {
 				System.out.println("colliding");
+				return new double[]{-1,-1};
 			}
 			if(coords[1]>otherCoords[1] && coords[1]<=otherCoords[3]){
 				System.out.println("colliding");
+				return new double[]{-1,-1};
 			}
 		}
 		
