@@ -71,8 +71,10 @@ public class GameObject {
 		//later problem
 	}
 
-	public void draw(Component c, Graphics g) {
-		g.fillRect((int)x, (int)y, 20, 20);
+	public void draw(double cameraX, double cameraY,Component c, Graphics g) {
+		int relativeX=(int)x-(int)cameraX;
+		int relativeY=(int)y-(int)cameraY;
+		g.fillRect((int)relativeX, (int)relativeY, 20, 20);
 	}
 
 }

@@ -10,17 +10,20 @@ public class Scene {
 	private Background background;
 	private ArrayList<GameObject> entities;
 	private PlayerCharacter player;
+	private double cameraX,cameraY;
 	
 	
 	public Scene(ArrayList<GameObject> entities, String backgroundPath) {
 		this.background = new Background(0,backgroundPath);
 		this.entities = entities;
 		//addEntity(5,100);
-		addEntity(50,100,"block");
-		addEntity(200,20,"block");
-		addEntity(5,200,"block");
-		addEntity(100,22,"block");
+		addEntity(500,500,"block1");
+		addEntity(200,20,"block2");
+		addEntity(5,200,"block3");
+		addEntity(100,22,"block4");
 		addEntity(player = new PlayerCharacter(100,100,"player"));
+		cameraX=0;
+		cameraY=0;
 		
 	}
 	
@@ -50,9 +53,9 @@ public class Scene {
 	public void draw(Component c, Graphics g) {
 		background.draw(c,g);
 		for(GameObject e: entities) {
-			e.draw(c,g);
+			e.draw(cameraX,cameraY,c,g);
 		}
-		player.getGameObject().draw(c,g);
+		//player.getGameObject().draw(cameraX,cameraY,c,g);
 		
 	}
 	public void updatePositions() {
@@ -60,11 +63,12 @@ public class Scene {
 			entities.get(i).move(entities.get(i).xVelocity,entities.get(i).yVelocity);
 		}
 		
-		if(player.getGameObject().y<200) {
+		if(player.getGameObject().y<600) {
 			player.getGameObject().yVelocity+=.1;
 		}else {
-			player.getGameObject().y=200;
+			player.getGameObject().y=600;
 		}
-		;
+		cameraY=player.getGameObject().y/2;
+		cameraX=player.getGameObject().x/2;
 	}
 }
