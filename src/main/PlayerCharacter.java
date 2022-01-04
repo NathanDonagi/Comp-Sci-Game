@@ -20,31 +20,54 @@ public class PlayerCharacter {
 	protected int jumpCounter;
 	protected boolean state;
 	protected ImageResource imageResource;
+	public boolean touchingGround,canJump;
 	
 	public PlayerCharacter(double x, double y,String name){
 		
 		imageResource = new ImageResource("main/images/robot/", 8, 80);
-		
-		this.object = new GameObject(0,0,imageResource, new double[]{0,0,20,20},name);
+		touchingGround=true;
+		canJump=true;
+		this.object = new GameObject(0,0,20,20,imageResource,name);
 		jumpCounter = -1;
 	}
 	public void move(String movement) {
 		if(movement=="left") {
 			//object.move(-3,0);
-			object.xVelocity=-3;
+			if(object.xVelocity>-3)
+				object.xVelocity=-3;
 		}
 		if(movement=="right") {
 			//object.move(3,0);
-			object.xVelocity=3;
+			if(object.xVelocity<3)
+				object.xVelocity=3;
 		}
 		if(movement=="up") {
 			//object.move(0,-4);
-			object.yVelocity=-5;
+			if(canJump) {
+				if(object.yVelocity<-5);
+					object.yVelocity=-5;
+				canJump=false;
+			}
 		}
 		if(movement=="down") {
-			object.move(0,4);
+			//object.move(0,4);
+			//object.yVelocity+=2;
 		}
-		
+	}
+	public void friction(String movement) {
+		if(movement=="left") {
+			//object.move(-3,0);
+			object.xVelocity=0;
+		}
+		if(movement=="right") {
+			//object.move(3,0);
+			object.xVelocity=0;
+		}
+		if(movement=="up") {
+
+		}
+		if(movement=="down") {
+		}
 	}
 	public GameObject getGameObject() {
 		return object;

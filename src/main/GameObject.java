@@ -8,47 +8,40 @@ import java.util.Arrays;
 public class GameObject {
 	protected String name;
 	protected Hitbox hitbox;
-	public double x, y;
+	public double x,y,width,height;
 	private ImageResource image;
 	public double xVelocity;
 	public double yVelocity;
 	
-	public GameObject(double x, double y, ImageResource image, double[] coords,String name) {
+	public GameObject(double x, double y, double width, double height, ImageResource image, String name) {
+		this(x,y,width,height,name);
+	}
+	
+	public GameObject(double x, double y, double width, double height, String name) {
 		this.name=name;
 		this.x=x;
 		this.y=y;
 		this.xVelocity=0;
 		this.yVelocity=0;
 		this.image=image;
-		this.hitbox= new Hitbox(coords);
+		this.width=width;
+		this.height=height;
+		this.hitbox= new Hitbox(new double[]{0,0,width,height});
 	}
 	
-	public GameObject(double x, double y,String name) {
+	public GameObject(double x, double y, String name) {
 		this.name=name;
-		this.hitbox= new Hitbox(new double[]{0,0,20,20});
+		this.hitbox= new Hitbox(new double[]{0,0,40,40});
 		this.x=x;
 		this.y=y;
+		this.width=40;
+		this.height=40;
 	}
 
-	public boolean checkCollision(GameObject otherObject) {
-		double[] collision = hitbox.calcCollision(this,otherObject);
-		//System.out.println(Arrays.toString(collision));
-		if(collision[0]!=0 && collision[1]!=0) {
-			this.collide(collision,true);
-			otherObject.collide(collision,false);
-			return true;
-		}
-		return false;
+	public double[] collide(GameObject otherObject) {
+		return hitbox.calcCollision(this,otherObject);
 	}
 	
-	//indicator is 1 if this is the primary collision object, -1 if its the secondary object
-	public void collide(double[] collision, boolean indicator) {
-			System.out.println("true");
-			this.x-=xVelocity;
-			this.y-=yVelocity;
-			xVelocity=0;
-			yVelocity=0;
-	}
 	public void updateVelocity(double x, double y) {
 		xVelocity+=x;
 		yVelocity+=y;
@@ -74,7 +67,7 @@ public class GameObject {
 	public void draw(double cameraX, double cameraY,Component c, Graphics g) {
 		int relativeX=(int)x-(int)cameraX;
 		int relativeY=(int)y-(int)cameraY;
-		g.fillRect((int)relativeX, (int)relativeY, 20, 20);
+		g.fillRect((int)relativeX, (int)relativeY, (int)width, (int)height);
 	}
 
 }

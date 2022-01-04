@@ -20,9 +20,8 @@ public class Game{
 		player=currentScene.getPlayer();
 	}
 	
-	public void update(){
-		currentScene.updatePositions();
-		currentScene.checkCollisions();
+	public void update(ArrayList<String>listOflastPresses){
+		currentScene.updatePositions(listOflastPresses);
 	}
 
 	

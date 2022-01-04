@@ -1,28 +1,28 @@
 package main;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Set;
+
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.awt.Rectangle;
 
 public class GraphicsPanel extends JPanel implements KeyListener{
 
 	private Timer timer;
 	private Game game= new Game();
+	private Set<String> keysPressed; 
+	private ArrayList<String> listOflastPresses;
+
 
 	public GraphicsPanel(){
+		this.keysPressed = new HashSet<String>();
+		this.listOflastPresses = new ArrayList<>();
 		timer = new Timer(5, new ClockListener(this)); 
 		timer.start();
 		this.setFocusable(true);
@@ -39,27 +39,56 @@ public class GraphicsPanel extends JPanel implements KeyListener{
 
 	
 	public void clock(){
-		game.update();
+		if(keysPressed.size()>0) {
+			for(String s: keysPressed) {
+				game.player.move(s);
+			}
+		}
+		game.update(this.listOflastPresses);
 		this.repaint();
 	}
 	
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			game.player.move("right");
-		if(e.getKeyCode() == KeyEvent.VK_LEFT)
+			this.keysPressed.add("right");
+			listOflastPresses.add("right");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			game.player.move("left");
-		if(e.getKeyCode() == KeyEvent.VK_UP)
+			this.keysPressed.add("left");
+			listOflastPresses.add("left");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			game.player.move("up");
-		if(e.getKeyCode() == KeyEvent.VK_DOWN)
+			listOflastPresses.add("up");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			game.player.move("down");
-		if(e.getKeyCode() == KeyEvent.VK_SPACE)
-			game.player.move("up");
+			this.keysPressed.add("down");
+			listOflastPresses.add("down");
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			game.player.friction("right");
+			this.keysPressed.remove("right");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			game.player.friction("left");
+			this.keysPressed.remove("left");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			game.player.friction("up");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			game.player.friction("down");
+			this.keysPressed.remove("down");
+		}
 	}
 
 

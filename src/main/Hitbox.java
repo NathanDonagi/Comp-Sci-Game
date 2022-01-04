@@ -39,28 +39,41 @@ public class Hitbox {
 		
 		//System.out.println(Arrays.toString(coords) + Arrays.toString(otherCoords));
 		
-		if(coords[2]>otherCoords[0] && coords[2]<=otherCoords[2]) {
-			if(coords[3]>otherCoords[1] && coords[3]<=otherCoords[3]) {
-				System.out.println("colliding");
-				return new double[]{-1,-1};
-			}
-			if(coords[1]>otherCoords[1] && coords[1]<otherCoords[3]){
-				System.out.println("colliding");
-				return new double[]{-1,-1};
-			}
-		}
-		if(coords[0]>otherCoords[0] && coords[0]<=otherCoords[2]) {
-			if(coords[3]>otherCoords[1] && coords[3]<otherCoords[3]) {
-				System.out.println("colliding");
-				return new double[]{-1,-1};
-			}
-			if(coords[1]>otherCoords[1] && coords[1]<=otherCoords[3]){
-				System.out.println("colliding");
-				return new double[]{-1,-1};
-			}
-		}
+		if (coords[2] >= otherCoords[0] && coords[2] <= otherCoords[2]) {
+		      if (coords[3] >= otherCoords[1] && coords[3] <= otherCoords[3]) {
+		        return new double[]{coords[2]-otherCoords[0],coords[3]-otherCoords[1]};
+		      }
+		      if (coords[3] >= otherCoords[3] && coords[1] <= otherCoords[1]) {
+		        return new double[]{coords[2]-otherCoords[0],coords[3]-otherCoords[1]};
+		      }
+		      if (coords[1] >= otherCoords[1] && coords[1] <= otherCoords[3]) {
+		        return new double[]{coords[2]-otherCoords[0],coords[1]-otherCoords[3]};
+		      }
+		    }
+		    if (coords[0] >= otherCoords[0] && coords[0] <= otherCoords[2]) {
+		      if (coords[3] >= otherCoords[1] && coords[3] <= otherCoords[3]) {
+		        return new double[]{coords[0]-otherCoords[2],coords[3]-otherCoords[1]};
+		      }
+		      if (coords[3] >= otherCoords[3] && coords[1] <= otherCoords[1]) {
+		        return new double[]{coords[0]-otherCoords[2],coords[3]-otherCoords[1]};
+		      }
+		      if (coords[1] >= otherCoords[1] && coords[1] <= otherCoords[3]) {
+		        return new double[]{coords[0]-otherCoords[2],coords[1]-otherCoords[3]};
+		      }
+		    }
+		    if (coords[0] <= otherCoords[0] && coords[2] >= otherCoords[2]) {
+		      if (coords[3] >= otherCoords[1] && coords[3] <= otherCoords[3]) {
+		        return new double[]{coords[0]-otherCoords[2],coords[3]-otherCoords[1]};
+		      }
+		      if (coords[3] >= otherCoords[3] && coords[1] <= otherCoords[1]) {
+		        return new double[]{coords[0]-otherCoords[2],coords[3]-otherCoords[1]};
+		      }
+		      if (coords[1] >= otherCoords[1] && coords[1] <= otherCoords[3]) {
+		        return new double[]{coords[0]-otherCoords[2],coords[1]-otherCoords[3]};
+		      }
+		    }
 		
+
 		return new double[]{0,0};
 	}
-
 }
