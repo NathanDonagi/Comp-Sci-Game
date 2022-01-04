@@ -12,11 +12,32 @@ import javax.swing.Timer;
 public class Game{
 	private Timer timer;
 	public PlayerCharacter player;
-	private Scene currentScene;
+	private Scene scene1,scene2,currentScene;
 	
 	public Game() {
-		ArrayList<GameObject> entities = new ArrayList<>();
-		currentScene = new Scene(entities, "main/images/background/raceTrack.png");
+		ArrayList<GameObject> scene1Entities = new ArrayList<>();
+		scene1Entities.add(new GameObject(-2000,300,100000,40,"block"));
+		scene1Entities.add(new GameObject(50,200,"block"));
+		scene1Entities.add(new GameObject(100,125,"block"));
+		scene1Entities.add(new GameObject(200,100,"block"));
+		scene1Entities.add(new GameObject(500,75,"block"));
+		scene1Entities.add(new GameObject(550,25,"block"));
+		scene1Entities.add(new GameObject(850,50,"block"));
+		scene1Entities.add(new GameObject(950,-25,150,40,"block"));
+		scene1Entities.add(new GameObject(1150,-275,100,40, "block"));
+		scene1Entities.add(new GameObject(1750,-275,100,40, "block"));
+		scene1Entities.add(new GameObject(1810,-275,40,700, "block"));
+		scene1Entities.add(new GameObject(-1400,-275,40,700, "block"));
+		scene1Entities.add(new GameObject(2025,-11070,40,11500, "block"));
+		scene1 = new Scene(scene1Entities, "main/images/background/raceTrack.png");
+
+		ArrayList<GameObject> scene2Entities = new ArrayList<>();
+		scene2Entities.add(new GameObject(-2000,300,100000,40,"block"));
+		scene2Entities.add(new GameObject(100,200,"block"));
+		scene2 = new Scene(scene2Entities, "main/images/background/raceTrack.png");
+		
+		
+		currentScene=scene2;
 		player=currentScene.getPlayer();
 	}
 	
