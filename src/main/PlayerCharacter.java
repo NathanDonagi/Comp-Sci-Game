@@ -21,9 +21,10 @@ public class PlayerCharacter {
 	protected boolean state;
 	protected ImageResource imageResource;
 	public boolean touchingGround,canJump;
+	public boolean gravity;
 	
 	public PlayerCharacter(double x, double y,String name){
-		
+		gravity=true;
 		imageResource = new ImageResource("main/images/robot/", 8, 80);
 		touchingGround=true;
 		canJump=true;
@@ -32,16 +33,19 @@ public class PlayerCharacter {
 	}
 	public void move(String movement) {
 		if(movement=="left") {
+			gravity=true;
 			//object.move(-3,0);
 			if(object.xVelocity>-3)
 				object.xVelocity=-3;
 		}
 		if(movement=="right") {
+			gravity=true;
 			//object.move(3,0);
 			if(object.xVelocity<3)
 				object.xVelocity=3;
 		}
 		if(movement=="up") {
+			gravity=true;
 			//object.move(0,-4);
 			if(canJump) {
 				if(object.yVelocity<-5);

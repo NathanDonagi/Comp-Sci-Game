@@ -33,11 +33,13 @@ public class Game{
 
 		ArrayList<GameObject> scene2Entities = new ArrayList<>();
 		scene2Entities.add(new GameObject(-2000,300,100000,40,"block"));
-		scene2Entities.add(new GameObject(100,200,"block"));
+		for(int x=0;x<22;x++)
+			scene2Entities.add(new GameObject(-500+x*150,200,"block"));
+		
 		scene2 = new Scene(scene2Entities, "main/images/background/raceTrack.png");
 		
 		
-		currentScene=scene2;
+		currentScene=scene1;
 		player=currentScene.getPlayer();
 	}
 	

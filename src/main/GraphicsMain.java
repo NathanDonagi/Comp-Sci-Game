@@ -18,7 +18,7 @@ public class GraphicsMain extends JFrame{
     		public void run() {
     			try {
     				Player player = new Player(getClass().getResource("sounds/music.mp3").openStream());
-                			player.play();
+                			//player.play();
     				
     			} catch (Exception e) {
     				e.printStackTrace();

@@ -53,6 +53,7 @@ public class Scene {
 		
 	}
 	public void updatePositions(ArrayList<String>listOflastPresses) {
+		//System.out.println(player.gravity);
 		//System.out.println(player.getGameObject().x + ", "+ player.getGameObject().y+ ", "+ player.getGameObject().xVelocity+", "+player.getGameObject().yVelocity);
 		player.touchingGround=false;
 		//System.out.println(listOflastPresses+"");
@@ -72,15 +73,17 @@ public class Scene {
 		}
 		if(listOflastPresses.size()>3) {
 			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="right" &&  listOflastPresses.get(listOflastPresses.size()-3)=="left"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="right") {
-				player.getGameObject().xVelocity+=7;
+				player.getGameObject().xVelocity+=10;
 				player.canJump=true;
+				player.gravity=false;
 				listOflastPresses.clear();
 			}
 		}
 		if(listOflastPresses.size()>3) {
 			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="left" &&  listOflastPresses.get(listOflastPresses.size()-3)=="right"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="left") {
-				player.getGameObject().xVelocity-=7;
+				player.getGameObject().xVelocity-=10;
 				player.canJump=true;
+				player.gravity=false;
 				listOflastPresses.clear();
 			}
 		}
@@ -96,26 +99,30 @@ public class Scene {
 		player.getGameObject().x += player.getGameObject().xVelocity;
 		for(GameObject e: entities){
 			if(e.name!="player") {
+				if(player.getGameObject().collide(e)[0]!=0)
+					player.gravity=true;
 			player.getGameObject().x-=player.getGameObject().collide(e)[0]+.01*Math.signum(player.getGameObject().collide(e)[0]);
 		}
 		}
 		
-		player.getGameObject().y += player.getGameObject().yVelocity;
-		for(GameObject e: entities){
-			if(e.name!="player") {
-			if(player.getGameObject().collide(e)[1]>0){
-				player.touchingGround=true;
-			}else if(player.getGameObject().collide(e)[1]<0){
-				player.getGameObject().yVelocity=0;
+		if(player.gravity) {
+			player.getGameObject().y += player.getGameObject().yVelocity;
+			for(GameObject e: entities){
+				if(e.name!="player") {
+				if(player.getGameObject().collide(e)[1]>0){
+					player.touchingGround=true;
+				}else if(player.getGameObject().collide(e)[1]<0){
+					player.getGameObject().yVelocity=0;
+				}
+					//System.out.println(e.name + player.getGameObject().collide(e)[1]+1*Math.signum(player.getGameObject().collide(e)[1]));
+					player.getGameObject().y-=player.getGameObject().collide(e)[1]+.01*Math.signum(player.getGameObject().collide(e)[1]);
+			 }
 			}
-				//System.out.println(e.name + player.getGameObject().collide(e)[1]+1*Math.signum(player.getGameObject().collide(e)[1]));
-				player.getGameObject().y-=player.getGameObject().collide(e)[1]+.01*Math.signum(player.getGameObject().collide(e)[1]);
-		}
 		}
 		
 		
 		if(player.getGameObject().y<300) {
-			if(player.getGameObject().yVelocity<20 && !player.touchingGround) {
+			if(player.getGameObject().yVelocity<20 && !player.touchingGround && player.gravity) {
 				player.getGameObject().yVelocity+=.1;
 			}
 		}else {
