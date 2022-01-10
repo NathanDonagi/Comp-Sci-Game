@@ -8,28 +8,22 @@ import java.util.ArrayList;
 
 public class Scene {
 	private Background background;
-	private ArrayList<GameObject> entities;
+	private ArrayList<GameObject> blocks;
+	private ArrayList<Enemy> enemies;
+	private ArrayList<Projectile> projectiles;
 	private PlayerCharacter player;
 	private double cameraX,cameraY;
 	private boolean previous;
 	
-	public Scene(ArrayList<GameObject> entities, String backgroundPath) {
+	public Scene(ArrayList<GameObject> blocks, ArrayList<Enemy> enemies, String backgroundPath) {
 		this.background = new Background(0,backgroundPath);
-		this.entities = entities;
+		this.blocks = blocks;
+		this.enemies=enemies;
 		this.previous=true;
-		addEntity(player = new PlayerCharacter(100,100,"player"));
+		this.player = new PlayerCharacter(100,100,"player");
+		this.projectiles=new ArrayList <Projectile>();
 		cameraX=player.getGameObject().x-600;
 		cameraY=0;
-		
-	}
-	
-	private void addEntity(int i, int j, int k, int l, String string) {
-		entities.add(new GameObject(i,j,k,l,string));
-		
-	}
-
-	private void addEntity(PlayerCharacter playerCharacter) {
-		entities.add(playerCharacter.getGameObject());
 		
 	}
 
@@ -41,20 +35,31 @@ public class Scene {
 		return background;
 	} 
 	public void addEntity(int x, int y,String name) {
-		entities.add(new GameObject(x,y,name));
+		blocks.add(new GameObject(x,y,name));
 	}
 	
 	public void draw(Component c, Graphics g) {
 		background.draw(c,g);
-		for(GameObject e: entities) {
+		for(GameObject e: blocks) {
 			e.draw(cameraX,cameraY,c,g);
 		}
+		for(Enemy e: enemies) {
+			e.getGameObject().draw(cameraX,cameraY,c,g);
+		}
+		for(Projectile e: projectiles) {
+			e.getGameObject().draw(cameraX,cameraY,c,g);
+		}
+		player.getGameObject().draw(cameraX,cameraY,c,g);
 		//player.getGameObject().draw(cameraX,cameraY,c,g);
 		
 	}
-	public void updatePositions(ArrayList<String>listOflastPresses) {
+	public void updatePositions(ArrayList<String>listOflastPresses,Game game) {
 		//System.out.println(player.gravity);
 		//System.out.println(player.getGameObject().x + ", "+ player.getGameObject().y+ ", "+ player.getGameObject().xVelocity+", "+player.getGameObject().yVelocity);
+		for(Enemy e: enemies) {
+			e.updatePosition();
+			//System.out.println(e.getGameObject().x);
+		}
 		player.touchingGround=false;
 		//System.out.println(listOflastPresses+"");
 		if(listOflastPresses.size()>3) {
@@ -97,7 +102,7 @@ public class Scene {
 
 
 		player.getGameObject().x += player.getGameObject().xVelocity;
-		for(GameObject e: entities){
+		for(GameObject e: blocks){
 			if(e.name!="player") {
 				if(player.getGameObject().collide(e)[0]!=0)
 					player.gravity=true;
@@ -107,7 +112,7 @@ public class Scene {
 		
 		if(player.gravity) {
 			player.getGameObject().y += player.getGameObject().yVelocity;
-			for(GameObject e: entities){
+			for(GameObject e: blocks){
 				if(e.name!="player") {
 				if(player.getGameObject().collide(e)[1]>0){
 					player.touchingGround=true;
@@ -120,6 +125,19 @@ public class Scene {
 			}
 		}
 		
+		for(Enemy e: enemies) {
+			if(player.getGameObject().collide(e.getGameObject())[1]<0) {
+				this.player=new PlayerCharacter(100,100,"player");
+				game.player=this.player;
+			}else {
+				for(Projectile p: projectiles) {
+					if(e.getGameObject().collide(p.getGameObject())[1]<0) {
+						enemies.remove(e);
+						break;
+					}
+				}
+			}
+		}
 		
 		if(player.getGameObject().y<300) {
 			if(player.getGameObject().yVelocity<20 && !player.touchingGround && player.gravity) {
@@ -144,5 +162,9 @@ public class Scene {
 			player.getGameObject().yVelocity=-1;
 		}
 		previous=player.touchingGround;
+		
+		if(player.getGameObject().x>1800 && player.getGameObject().y>250) {
+			game.setScene(game.scene2);
+		}
 	}
 }

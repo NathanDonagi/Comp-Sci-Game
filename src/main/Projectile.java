@@ -11,30 +11,28 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class Enemy {
+public class Projectile {
 
 	// movement variables
 	protected GameObject object;
 	protected ImageResource imageResource;
-	protected double[][]movementCoords = new double[2][2];
-	protected boolean direction;
+	protected double[]movementCoords = new double[2];
 	protected double speed;
 	
-	public Enemy(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
+	public Projectile(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
 		imageResource = new ImageResource("main/images/robot/", 8, 80);
 		this.object = new GameObject(xStart,yStart,20,20,imageResource,name);
-		movementCoords = new double[][] {{xStart,yStart},{xEnd,yEnd}};
-		direction=true;
+		movementCoords = new double[]{xEnd,yEnd};
 		this.speed=speed;
 	}
-	public void updatePosition() {
-		int i = (direction ? 1 : 0);
-		double magnitude = Math.sqrt((movementCoords[i][0]-object.x)*(movementCoords[i][0]-object.x)+(movementCoords[i][1]-object.y)*(movementCoords[i][1]-object.y));
+	public boolean updatePosition() {
+		double magnitude = Math.sqrt((movementCoords[0]-object.x)*(movementCoords[0]-object.x)+(movementCoords[1]-object.y)*(movementCoords[1]-object.y));
 		if(magnitude>2) {
-			object.x+=speed*(movementCoords[i][0]-object.x)/(magnitude);
-			object.y+=speed*(movementCoords[i][1]-object.y)/magnitude;
+			object.x+=speed*(movementCoords[0]-object.x)/(magnitude);
+			object.y+=speed*(movementCoords[1]-object.y)/magnitude;
+			return true;
 		}else {
-			direction = !direction;
+			return false;
 		}
 	}
 	public GameObject getGameObject() {
