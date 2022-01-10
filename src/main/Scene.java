@@ -24,7 +24,6 @@ public class Scene {
 		this.projectiles=new ArrayList <Projectile>();
 		cameraX=player.getGameObject().x-600;
 		cameraY=0;
-		
 	}
 
 	public PlayerCharacter getPlayer() {
@@ -60,6 +59,16 @@ public class Scene {
 			e.updatePosition();
 			//System.out.println(e.getGameObject().x);
 		}
+		
+		int pr = 0;
+		while(pr< projectiles.size()) {
+			if(projectiles.get(pr).updatePosition()) {
+				pr+=1;
+			}else {
+				projectiles.remove(pr);
+			}
+		}
+			
 		player.touchingGround=false;
 		//System.out.println(listOflastPresses+"");
 		if(listOflastPresses.size()>3) {
@@ -99,6 +108,31 @@ public class Scene {
 				listOflastPresses.clear();
 			}
 		}
+		if(listOflastPresses.size()>3) {
+			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="right" &&  listOflastPresses.get(listOflastPresses.size()-3)=="up"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="down") {
+				projectiles.add(new Projectile(player.getGameObject().x, player.getGameObject().y, player.getGameObject().x+300 ,player.getGameObject().y,5,"projectile"));
+				listOflastPresses.clear();
+			}
+		}
+		if(listOflastPresses.size()>3) {
+			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="left" &&  listOflastPresses.get(listOflastPresses.size()-3)=="up"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="down") {
+				projectiles.add(new Projectile(player.getGameObject().x, player.getGameObject().y, player.getGameObject().x-300 ,player.getGameObject().y,5,"projectile"));
+				listOflastPresses.clear();
+			}
+		}
+		
+		if(listOflastPresses.size()>3) {
+			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="up" &&  listOflastPresses.get(listOflastPresses.size()-3)=="left"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="left") {
+				projectiles.add(new Projectile(player.getGameObject().x, player.getGameObject().y-1000, player.getGameObject().x ,player.getGameObject().y+200,10,"projectile"));
+				listOflastPresses.clear();
+			}
+		}
+		if(listOflastPresses.size()>3) {
+			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="up" &&  listOflastPresses.get(listOflastPresses.size()-3)=="right"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="right") {
+				projectiles.add(new Projectile(player.getGameObject().x, player.getGameObject().y-1000, player.getGameObject().x ,player.getGameObject().y+200,10,"projectile"));
+				listOflastPresses.clear();
+			}
+		}
 
 
 		player.getGameObject().x += player.getGameObject().xVelocity;
@@ -129,15 +163,23 @@ public class Scene {
 			if(player.getGameObject().collide(e.getGameObject())[1]<0) {
 				this.player=new PlayerCharacter(100,100,"player");
 				game.player=this.player;
-			}else {
-				for(Projectile p: projectiles) {
-					if(e.getGameObject().collide(p.getGameObject())[1]<0) {
-						enemies.remove(e);
-						break;
-					}
-				}
 			}
 		}
+		
+		for(Projectile p: projectiles) {
+			int er=0;
+			while(er<enemies.size()) {
+				if(enemies.get(er).getGameObject().collide(p.getGameObject())[1]<0) {
+					enemies.remove(er);
+					break;
+				}else {
+					er+=1;
+				}
+			}
+
+		}
+		
+		
 		
 		if(player.getGameObject().y<300) {
 			if(player.getGameObject().yVelocity<20 && !player.touchingGround && player.gravity) {
