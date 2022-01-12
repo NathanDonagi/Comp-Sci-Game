@@ -41,20 +41,21 @@ public class Game{
 
 		ArrayList<GameObject> scene2Blocks = new ArrayList<>();
 		scene2Blocks.add(new GameObject(-2000,300,100000,40,"block"));
-		scene2Blocks.add(new GameObject(2025,-275,40,1500, "block"));
+		scene2Blocks.add(new GameObject(2025,-275,100000,1500, "block"));
 		scene2Blocks.add(new GameObject(-1400,-275,40,1500, "block"));
 		for(int x=0;x<8;x++)
 			scene2Blocks.add(new GameObject(-1000+x*150,200-50*x,"block"));
 		for(int x=0;x<6;x++)
 			scene2Blocks.add(new GameObject(200+x*200,-200,"block"));
+		scene2Blocks.add(new GameObject(200+20,-200,"block"));
 		
 		scene2Blocks.add(new GameObject(1900,-200,"block"));
 	
 		ArrayList<Enemy> scene2Enemies = new ArrayList<>();
 		
-		scene2 = new Scene(0,279,1900,-200,2025,-250,scene2Blocks, scene2Enemies, "main/images/background/raceTrack.png");
+		scene2 = new Scene(0,279,1885,-250,2025,-200,scene2Blocks, scene2Enemies, "main/images/background/raceTrack.png");
 		
-		scene3 = new Scene(0,279,1900,-200,2025,-250,scene2Blocks, scene2Enemies, "main/images/background/raceTrack.png");
+		scene3 = new Scene(0,279,1885,-250,2025,-200,scene2Blocks, scene2Enemies, "main/images/background/raceTrack.png");
 		
 		scenes.add(scene1);
 		scenes.add(scene2);

@@ -133,7 +133,6 @@ public class Scene {
 		}
 		
 
-
 		player.getGameObject().x += player.getGameObject().xVelocity;
 		for(GameObject e: blocks){
 			if(e.name!="player") {
@@ -189,12 +188,19 @@ public class Scene {
 			player.getGameObject().yVelocity=0;
 			player.touchingGround=true;
 		}
-		//cameraY=player.getGameObject().y;
-		if(player.getGameObject().x<1300 && player.getGameObject().x>-800) {
-			 cameraX=player.getGameObject().x-600;
+		if(player.getGameObject().x>=1300) {
+			cameraX=1300-600;
+		}else if(player.getGameObject().x<-800) {
+			cameraX=-800-600;
+		}else {
+			cameraX=player.getGameObject().x-600;
 		}
-		if(player.getGameObject().y<200) {
-			 cameraY=player.getGameObject().y-200;
+			
+		
+		if(player.getGameObject().y>200) {
+			cameraY=0;
+		}else {
+			cameraY=player.getGameObject().y-200;
 		}
 		if(player.touchingGround) {
 			player.canJump=true;
