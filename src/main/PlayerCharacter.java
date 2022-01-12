@@ -28,7 +28,7 @@ public class PlayerCharacter {
 		imageResource = new ImageResource("main/images/robot/", 8, 80);
 		touchingGround=true;
 		canJump=true;
-		this.object = new GameObject(0,0,20,20,imageResource,name);
+		this.object = new GameObject(x,y,20,20,imageResource,name);
 		jumpCounter = -1;
 	}
 	public void move(String movement) {
