@@ -47,7 +47,7 @@ public class Game{
 			scene2Blocks.add(new GameObject(-1000+x*150,200-50*x,"block"));
 		for(int x=0;x<6;x++)
 			scene2Blocks.add(new GameObject(200+x*200,-200,"block"));
-		scene2Blocks.add(new GameObject(200+20,-200,"block"));
+		scene2Blocks.add(new GameObject(200+40,-200,"block"));
 		
 		scene2Blocks.add(new GameObject(1900,-200,"block"));
 	
