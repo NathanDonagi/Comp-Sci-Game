@@ -84,15 +84,13 @@ public class Scene {
 		//System.out.println(listOflastPresses+"");
 		if(listOflastPresses.size()>3 && sceneNumber>=0) {
 			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="up" &&  listOflastPresses.get(listOflastPresses.size()-3)=="right"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="left") {
-				player.getGameObject().yVelocity=-8;
-				player.canJump=true;
+				player.getGameObject().yVelocity=-6;
 				listOflastPresses.clear();
 			}
 		}
 		if(listOflastPresses.size()>3 && sceneNumber>=0) {
 			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="up" &&  listOflastPresses.get(listOflastPresses.size()-3)=="left"  &&  listOflastPresses.get(listOflastPresses.size()-4)=="right") {
-				player.getGameObject().yVelocity=-8;
-				player.canJump=true;
+				player.getGameObject().yVelocity=-6;
 				listOflastPresses.clear();
 			}
 		}
