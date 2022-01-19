@@ -26,27 +26,26 @@ public class PlayerCharacter {
 		gravity=true;
 		touchingGround=true;
 		canJump=true;
-		this.object = new GameObject(x,y-100,52,70, "images/", new String[]{"Jump","Walk", "still"}, new int[]{5,4,1},12, name);
+		this.object = new GameObject(x,y-100,52,70, "images/", new String[]{"Jump","Walk", "still","flippedJump","flippedWalk", "flippedstill"}, new int[]{5,4,1,5,4,1},new int[]{1,1,1,1,1,1},12, name);
 		jumpCounter = -1;
 	}
 	public void move(String movement) {
 		if(movement=="left") {
 			gravity=true;
-			this.object.currentAnimation="Walk";
 			//object.move(-3,0);
+			object.flipped=true;
 			if(object.xVelocity>-3)
 				object.xVelocity=-3;
 		}
 		if(movement=="right") {
 			gravity=true;
-			this.object.currentAnimation="Walk";
+			object.flipped=false;
 			//object.move(3,0);
 			if(object.xVelocity<3)
 				object.xVelocity=3;
 		}
 		if(movement=="up") {
 			gravity=true;
-			this.object.currentAnimation="Jump";
 			//object.move(0,-4);
 			if(canJump) {
 				if(object.yVelocity<-5);
@@ -61,12 +60,10 @@ public class PlayerCharacter {
 	}
 	public void friction(String movement) {
 		if(movement=="left") {
-			this.object.currentAnimation="still";
 			//object.move(-3,0);
 			object.xVelocity=0;
 		}
 		if(movement=="right") {
-			this.object.currentAnimation="still";
 			//object.move(3,0);
 			object.xVelocity=0;
 		}

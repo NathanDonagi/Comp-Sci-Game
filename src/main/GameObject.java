@@ -1,4 +1,5 @@
 package main;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,18 +21,21 @@ public class GameObject {
 	public double x,y,width,height;
 	public String currentAnimation;
 	private Hashtable<String, ArrayList<ImageIcon>> animations;
+	private Hashtable<String, Integer> times;
 	private int SCALE;
-	private double frame;
+	protected double frame;
 	public double xVelocity;
 	public double yVelocity;
+	public boolean flipped;
 	
-	public GameObject(double x, double y, double width, double height, String imagePath, String[] images, int[] lengths, int scale,  String name) {
+	public GameObject(double x, double y, double width, double height, String imagePath, String[] images, int[] lengths, int[] times, int scale,  String name) {
 		this.name=name;
 		this.x=x;
 		this.y=y;
 		this.xVelocity=0;
 		this.yVelocity=0;
 		this.animations=new Hashtable<>();
+		this.times = new Hashtable<>();
 		this.frame=0;
 		this.SCALE= scale;
 		for(int i=0; i<images.length; i++) {
@@ -43,6 +47,7 @@ public class GameObject {
 				URL imageURL = cldr.getResource(newImagePath);	
 				//System.out.println(newImagePath);
 				ImageIcon image = new ImageIcon(newImagePath);	
+				//System.out.println(image);
 				image = new ImageIcon(imageURL);
 				Image scaled = image.getImage().getScaledInstance(image.getIconWidth() / SCALE, 
 						image.getIconHeight() / SCALE, image.getImage().SCALE_SMOOTH);
@@ -50,6 +55,7 @@ public class GameObject {
 				imagesToStore.add(image);
 			}
 			animations.put(images[i], imagesToStore);
+			this.times.put(images[i],times[i]);
 		}
 		
 		
@@ -57,6 +63,7 @@ public class GameObject {
 		this.width=width;
 		this.height=height;
 		this.hitbox= new Hitbox(new double[]{0,0,width,height});
+		flipped=false;
 	}
 	
 	public GameObject(double x, double y, double width, double height, String name) {
@@ -71,7 +78,7 @@ public class GameObject {
 
 	
 	public GameObject(double x, double y, String name) {
-		this(x,y,25,25,"images/", new String[]{"dirt"}, new int[]{1},1, name);
+		this(x,y,25,25,"images/", new String[]{"grass"}, new int[]{1},new int[]{1},1, name);
 	}
 
 	public double[] collide(GameObject otherObject) {
@@ -104,11 +111,18 @@ public class GameObject {
 		int relativeX=(int)x-(int)cameraX;
 		int relativeY=(int)y-(int)cameraY;
 		if(this.animations!=null) {
-			frame+=.05;
-			frame%=animations.get(currentAnimation).size();
-			animations.get(currentAnimation).get((int)frame).paintIcon(c, g, (int)relativeX, (int)relativeY);
-			g.drawRect((int)relativeX, (int)relativeY, (int)width, (int)height);
+			if(flipped) {
+				frame+=.05*times.get("flipped" + currentAnimation);
+				frame%=animations.get("flipped" + currentAnimation).size();
+				animations.get("flipped" + currentAnimation).get((int)frame).paintIcon(c, g, (int)relativeX, (int)relativeY);
+			}else {
+				frame+=.05*times.get(currentAnimation);
+				frame%=animations.get(currentAnimation).size();
+				animations.get(currentAnimation).get((int)frame).paintIcon(c, g, (int)relativeX, (int)relativeY);
+			}
+			//g.drawRect((int)relativeX, (int)relativeY, (int)width, (int)height);
 		}else {
+			g.setColor(new Color(53,26,22));
 			g.fillRect((int)relativeX, (int)relativeY, (int)width, (int)height);
 		}
 	}

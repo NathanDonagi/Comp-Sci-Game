@@ -195,10 +195,10 @@ public class Scene {
 		}
 			
 		
-		if(player.getGameObject().y>700) {
-			cameraY=-300;
+		if(player.getGameObject().y>125) {
+			cameraY=-175;
 		}else {
-			cameraY=player.getGameObject().y-400;
+			cameraY=player.getGameObject().y-300;
 		}
 		if(player.touchingGround) {
 			player.canJump=true;
@@ -212,8 +212,12 @@ public class Scene {
 			game.nextScene();
 		}
 		
-		if(player.getGameObject().xVelocity == 0 && player.getGameObject().yVelocity == 0) {
+		if(player.getGameObject().xVelocity == 0 && (player.getGameObject().yVelocity == 0||player.touchingGround)) {
 			player.getGameObject().currentAnimation="still";
+		}else if (player.getGameObject().yVelocity == 0||player.touchingGround) {
+			player.getGameObject().currentAnimation="Walk";
+		}else {
+			player.getGameObject().currentAnimation="Jump";
 		}
 	}
 }

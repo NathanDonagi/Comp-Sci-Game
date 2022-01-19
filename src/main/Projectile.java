@@ -20,7 +20,7 @@ public class Projectile {
 	protected double speed;
 	
 	public Projectile(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
-		this.object = new GameObject(xStart,yStart,20,20,"images/", new String[]{"dirt"}, new int[]{1},1, name);
+		this.object = new GameObject(xStart,yStart,20,20,"images/", new String[]{"dirt"}, new int[]{1},new int[]{1},1, name);
 		movementCoords = new double[]{xEnd,yEnd};
 		this.speed=speed;
 	}

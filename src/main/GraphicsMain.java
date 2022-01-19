@@ -17,8 +17,8 @@ public class GraphicsMain extends JFrame{
     		@Override
     		public void run() {
     			try {
-    				Player player = new Player(getClass().getResource("sounds/music.mp3").openStream());
-                			//player.play();
+    				Player player = new Player(getClass().getResource("sounds/Woodland Wander.mp3").openStream());
+                			player.play();
     				
     			} catch (Exception e) {
     				e.printStackTrace();

@@ -21,7 +21,7 @@ public class Enemy {
 	protected double speed;
 	
 	public Enemy(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
-		this.object = new GameObject(xStart,yStart,20,20,"images/", new String[]{"dirt"}, new int[]{1},1, name);
+		this.object = new GameObject(xStart,yStart,40,40,"images/", new String[]{"tile0"}, new int[]{19},new int[]{3},3, name);
 		movementCoords = new double[][] {{xStart,yStart},{xEnd,yEnd}};
 		direction=true;
 		this.speed=speed;
