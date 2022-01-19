@@ -19,33 +19,34 @@ public class PlayerCharacter {
 
 	protected int jumpCounter;
 	protected boolean state;
-	protected ImageResource imageResource;
 	public boolean touchingGround,canJump;
 	public boolean gravity;
 	
 	public PlayerCharacter(double x, double y,String name){
 		gravity=true;
-		imageResource = new ImageResource("main/images/robot/", 8, 80);
 		touchingGround=true;
 		canJump=true;
-		this.object = new GameObject(x,y,20,20,imageResource,name);
+		this.object = new GameObject(x,y-100,52,70, "images/", new String[]{"Jump","Walk", "still"}, new int[]{5,4,1},12, name);
 		jumpCounter = -1;
 	}
 	public void move(String movement) {
 		if(movement=="left") {
 			gravity=true;
+			this.object.currentAnimation="Walk";
 			//object.move(-3,0);
 			if(object.xVelocity>-3)
 				object.xVelocity=-3;
 		}
 		if(movement=="right") {
 			gravity=true;
+			this.object.currentAnimation="Walk";
 			//object.move(3,0);
 			if(object.xVelocity<3)
 				object.xVelocity=3;
 		}
 		if(movement=="up") {
 			gravity=true;
+			this.object.currentAnimation="Jump";
 			//object.move(0,-4);
 			if(canJump) {
 				if(object.yVelocity<-5);
@@ -60,10 +61,12 @@ public class PlayerCharacter {
 	}
 	public void friction(String movement) {
 		if(movement=="left") {
+			this.object.currentAnimation="still";
 			//object.move(-3,0);
 			object.xVelocity=0;
 		}
 		if(movement=="right") {
+			this.object.currentAnimation="still";
 			//object.move(3,0);
 			object.xVelocity=0;
 		}

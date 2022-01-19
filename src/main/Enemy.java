@@ -21,8 +21,7 @@ public class Enemy {
 	protected double speed;
 	
 	public Enemy(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
-		imageResource = new ImageResource("main/images/robot/", 8, 80);
-		this.object = new GameObject(xStart,yStart,20,20,imageResource,name);
+		this.object = new GameObject(xStart,yStart,20,20,"images/", new String[]{"dirt"}, new int[]{1},1, name);
 		movementCoords = new double[][] {{xStart,yStart},{xEnd,yEnd}};
 		direction=true;
 		this.speed=speed;

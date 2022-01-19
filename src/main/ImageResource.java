@@ -43,8 +43,6 @@ public class ImageResource {
 		for(int i = 0; i < images.length; i++) {
 			newImagePath = imagePath + (i + 1) + ").png";
 			URL imageURL = cldr.getResource(newImagePath);		
-			//System.out.println(newImagePath);
-			//System.out.println(imageURL);
 			image = new ImageIcon(imageURL);	
 			image.getImage();
 			Image scaled = image.getImage().getScaledInstance(image.getIconWidth() / SCALE, 

@@ -20,8 +20,7 @@ public class Projectile {
 	protected double speed;
 	
 	public Projectile(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
-		imageResource = new ImageResource("main/images/robot/", 8, 80);
-		this.object = new GameObject(xStart,yStart,20,20,imageResource,name);
+		this.object = new GameObject(xStart,yStart,20,20,"images/", new String[]{"dirt"}, new int[]{1},1, name);
 		movementCoords = new double[]{xEnd,yEnd};
 		this.speed=speed;
 	}
