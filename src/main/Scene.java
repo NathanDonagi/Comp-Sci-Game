@@ -122,7 +122,7 @@ public class Scene {
 				listOflastPresses.clear();
 			}
 		}
-		if(listOflastPresses.size()>2  && sceneNumber>=0) {
+		if(listOflastPresses.size()>2  && sceneNumber>=3) {
 			if(listOflastPresses.get(listOflastPresses.size()-1)=="down" && listOflastPresses.get(listOflastPresses.size()-2)=="up" &&  listOflastPresses.get(listOflastPresses.size()-3)=="up") {
 				projectiles.add(new Projectile(player.getGameObject().x-30, player.getGameObject().y-1000, player.getGameObject().x-30 ,player.getGameObject().y+200,10,"projectile"));
 				listOflastPresses.clear();
