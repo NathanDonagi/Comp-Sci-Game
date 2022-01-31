@@ -1,4 +1,7 @@
 package main;
+import java.awt.Color;
+import java.io.IOException;
+
 // Class: GraphicsMain
 // Written by: Mr. Swope
 // Date: 1/27/2020
@@ -11,8 +14,7 @@ import javazoom.jl.player.Player;
 
 public class GraphicsMain extends JFrame{
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws IOException {
 		new Thread(new Runnable() {
     		@Override
     		public void run() {
@@ -28,14 +30,16 @@ public class GraphicsMain extends JFrame{
 		
 		GraphicsMain window = new GraphicsMain();
 	    JPanel p = new JPanel();
-	    p.add(new GraphicsPanel());  
+	    p.setBackground(Color.black);
+	    GraphicsPanel temp = new GraphicsPanel();
+	    temp.setBackground(Color.black);
+	    p.add(temp);  
 	    window.setTitle("LM Video Game Design");
 	    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    window.setContentPane(p);
+	    window.getContentPane().setBackground(Color.black);
 	    window.pack();
 	    window.setLocationRelativeTo(null);
 	    window.setVisible(true);
-
 	}
-
 }

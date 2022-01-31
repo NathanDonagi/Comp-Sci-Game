@@ -1,43 +1,40 @@
 package main;
-// Class: Sprite
-// Written by: Mr. Swope
-// Date: 1/27/2020
-// Description: This class implements an Item.  This Item will be drawn onto a graphics panel. 
-// 
-// If you modify this class you should add comments that describe when and how you modified the class.  
+// Class: Projectile
+// Written by: Woodland Wanderer Dev Team
+// Date: 1/20/2022
+// Description: This class consists of the implementation for projectiles.
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.io.IOException;
 
 public class Projectile {
 
-	// movement variables
+	// instance variables
 	protected GameObject object;
 	protected ImageResource imageResource;
-	protected double[]movementCoords = new double[2];
+	protected double[] movementCoords = new double[2];
 	protected double speed;
-	
-	public Projectile(double xStart, double yStart, double xEnd, double yEnd, double speed, String name){
-		this.object = new GameObject(xStart,yStart,20,80,"images/", new String[]{"lightning-"}, new int[]{11},new int[]{2},1, name);
-		movementCoords = new double[]{xEnd,yEnd};
-		this.speed=speed;
+
+	// packed constructor
+	public Projectile(double xStart, double yStart, double xEnd, double yEnd, double speed, String name) throws IOException {
+		this.object = new GameObject(xStart, yStart, 80, 80, "images/", new String[]{"lightning-"}, new int[]{11}, new int[]{2}, 1, name);
+		movementCoords = new double[]{xEnd, yEnd};
+		this.speed = speed;
 	}
+
+	// updates the position
 	public boolean updatePosition() {
-		double magnitude = Math.sqrt((movementCoords[0]-object.x)*(movementCoords[0]-object.x)+(movementCoords[1]-object.y)*(movementCoords[1]-object.y));
-		if(magnitude>2) {
-			object.x+=speed*(movementCoords[0]-object.x)/(magnitude);
-			object.y+=speed*(movementCoords[1]-object.y)/magnitude;
+		double magnitude = Math.sqrt((movementCoords[0] - object.x) * (movementCoords[0] - object.x) + (movementCoords[1] - object.y) * (movementCoords[1] - object.y));
+		if(magnitude > 2) {
+			object.x += speed * (movementCoords[0] - object.x) / (magnitude);
+			object.y += speed * (movementCoords[1] - object.y) / magnitude;
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
+
+	// getter
 	public GameObject getGameObject() {
 		return object;
 	}
 }
-	
-	
-	
