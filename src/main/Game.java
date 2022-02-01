@@ -24,7 +24,7 @@ public class Game {
 		scenes = new ArrayList<>();
 
 		ArrayList<GameObject> scene1Blocks = new ArrayList<>();
-		scene1Blocks.add(new GameObject(-2000, 440, 4500, 150, "block"));
+		scene1Blocks.add(new GameObject(-2000, 400, 4500, 200, "block"));
 		scene1Blocks.add(new GameObject(50, 200, "block"));
 		scene1Blocks.add(new GameObject(100, 125, "block"));
 		scene1Blocks.add(new GameObject(200, 100, "block"));
@@ -40,10 +40,10 @@ public class Game {
 
 		ArrayList<Enemy> scene1Enemies = new ArrayList<>();
 		scene1Enemies.add(new Enemy(0, 0, 200, 200, 1, "enemy"));
-		scene1 = new Scene(0, 279, 1850, 220, 2005, 280, scene1Blocks, scene1Enemies, "main/images/background/back.png");
+		scene1 = new Scene(0, 279, 1850, 220, 2005, 280, scene1Blocks, scene1Enemies, "main/images/background/background.png");
 
 		ArrayList<GameObject> scene2Blocks = new ArrayList<>();
-		scene2Blocks.add(new GameObject(-2000, 440, 4000, 150, "block"));
+		scene2Blocks.add(new GameObject(-2000, 400, 4000, 200, "block"));
 		scene2Blocks.add(new GameObject(2025, -1000, 4000, 5500, "block"));
 		scene2Blocks.add(new GameObject(-1400, -275, 40, 4500, "block"));
 		scene2Blocks.add(new GameObject(240, -200, "block"));
@@ -56,9 +56,9 @@ public class Game {
 
 		ArrayList<Enemy> scene2Enemies = new ArrayList<>();
 
-		scene2 = new Scene(0, 279, 1885, -280, 2025, -200, scene2Blocks, scene2Enemies, "main/images/background/back.png");
+		scene2 = new Scene(0, 279, 1885, -280, 2025, -200, scene2Blocks, scene2Enemies, "main/images/background/background.png");
 
-		scene3 = new Scene(0, 279, 1885,-280, 2025, -200, scene2Blocks, scene2Enemies, "main/images/background/back.png");
+		scene3 = new Scene(0, 279, 1885,-280, 2025, -200, scene2Blocks, scene2Enemies, "main/images/background/background.png");
 
 		scenes.add(scene1);
 		scenes.add(scene2);

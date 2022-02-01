@@ -19,7 +19,7 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 
 	// instance variables
 	private Timer timer;
-	private Game game = new Game();
+	private Game game;
 	private Set<String> keysPressed; 
 	private ArrayList<String> listOflastPresses;
 
@@ -28,16 +28,21 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 		this.keysPressed = new HashSet<String>();
 		this.listOflastPresses = new ArrayList<>();
 		timer = new Timer(5, new ClockListener(this)); 
-		timer.start();
 		this.setFocusable(true);
 		this.addKeyListener(this);
-		game = new Game();
 		setPreferredSize(new Dimension(1280,720));  
+		start();
 	}
 
+	public void start() throws IOException {
+		game = new Game();
+		timer.start();
+	}
 	// draws image
 	public void paint(Graphics g){
-		game.getScene().draw(this, g);
+		if(game!=null) {
+			game.getScene().draw(this, g);
+		}
 	}
 
 	// clock listener

@@ -99,7 +99,7 @@ public class Background {
 		
 		BufferedImage bimage = ImageIO.read(imageURL);
 		
-		VolatileImage vimage = createVolatileImage(bimage.getWidth()*2, bimage.getHeight()*2, Transparency.TRANSLUCENT);
+		VolatileImage vimage = createVolatileImage(bimage.getWidth(), bimage.getHeight(), Transparency.TRANSLUCENT);
 		
 		Graphics2D g = null;
 
@@ -108,7 +108,7 @@ public class Background {
 			g.setComposite(AlphaComposite.Src);
 			g.setColor(Color.black); 
 			g.clearRect(0, 0, vimage.getWidth(), vimage.getHeight());
-			g.drawImage(bimage, 0, 0, bimage.getWidth()*2, bimage.getHeight()*2, 0, 0, bimage.getWidth(),bimage.getHeight(), null);
+			g.drawImage(bimage, 0, 0, bimage.getWidth(), bimage.getHeight(), 0, 0, bimage.getWidth(),bimage.getHeight(), null);
 		}
 		finally { 
 			g.dispose(); 

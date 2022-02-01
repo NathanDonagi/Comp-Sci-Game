@@ -231,10 +231,10 @@ public class Scene {
 		}else {
 			player.getGameObject().currentAnimation="Jump";
 		}
-		background1.setX(0-cameraX/2);
+		background1.setX(-1-cameraX/2);
 		background2.setX(0-background1.getWidth()-cameraX/2);
 		
-		background1.setY(-400-cameraY/2);
-		background2.setY(-400-cameraY/2);
+		background1.setY(-630-cameraY/2);
+		background2.setY(-630-cameraY/2);
 	}
 }
