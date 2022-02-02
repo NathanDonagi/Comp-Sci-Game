@@ -55,7 +55,7 @@ public class GraphicsMain extends JFrame{
 		JLabel image = new JLabel(new ImageIcon(tempImage));
 		image.add(start);
 		
-		JButton help = new JButton("level 1 : right, left, right, up, down to super jump. level 2: right, left, right, down to dash. up, up, down to summon lightning. level 3: right and left are interchangable."); 
+		JButton help = new JButton("LVL 1 - Super Jump: right, left, right, up, LVL 2 - Dash: right, left, right, LVL 3 - Lightning: up, up, down"); 
 		image.add(help);
 		
 		p.add(image);
@@ -88,7 +88,7 @@ public class GraphicsMain extends JFrame{
 
 
 
-		window.setTitle("LM Video Game Design");
+		window.setTitle("The Woodland Wanderer");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setContentPane(p);
 		window.getContentPane().setBackground(Color.black);
