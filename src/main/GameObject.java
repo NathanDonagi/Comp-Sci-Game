@@ -24,15 +24,15 @@ public class GameObject {
 	// instance variables
 	protected String name;
 	protected Hitbox hitbox;
-	public double x,y,width,height;
-	public String currentAnimation;
+	protected double x,y,width,height;
+	protected String currentAnimation;
 	private Hashtable<String, ArrayList<VolatileImage>> animations;
 	private Hashtable<String, Integer> times;
 	private int SCALE;
 	protected double frame;
-	public double xVelocity;
-	public double yVelocity;
-	public boolean flipped;
+	protected double xVelocity;
+	protected double yVelocity;
+	protected boolean flipped;
 
 	// packed constructor 1
 	public GameObject(double x, double y, double width, double height, String imagePath, String[] images, int[] lengths, int[] times, int scale,  String name) throws IOException {
@@ -87,19 +87,30 @@ public class GameObject {
 		this(x, y, 25, 25, name);
 	}
 
+	// method: createVolatileImage
+	// parameters: the width, the height and whether or not there is transparency in an image, all ints
+	// return type: it returns a blank volatile image so the images can be added to it
+	// description: it create a new blank volatile image
 	
 	
-	private VolatileImage createVolatileImage(int width, int height, int transparency) { GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); GraphicsConfiguration gc = ge.getDefaultScreenDevice().getDefaultConfiguration(); VolatileImage image = null;
-
+	private VolatileImage createVolatileImage(int width, int height, int transparency) { 
+		
+	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
+	GraphicsConfiguration gc = ge.getDefaultScreenDevice().getDefaultConfiguration(); 
+	VolatileImage image = null;
 	image = gc.createCompatibleVolatileImage(width, height, transparency);
-
 	int valid = image.validate(gc);
-
-	if (valid == VolatileImage.IMAGE_INCOMPATIBLE) { image = this.createVolatileImage(width, height, transparency); return image; }
-
+	if (valid == VolatileImage.IMAGE_INCOMPATIBLE) { 
+		image = this.createVolatileImage(width, height, transparency); return image; 
+	}
 	return image; }
 	
 	
+	
+	// method: loadFromFile
+	// parameters: The url of an image imageURL
+	// return type: it returns a volatile image (an image that renders faster)
+	// description: it gets a volatile image from a file path
 	
 	public VolatileImage loadFromFile(URL imageURL) throws IOException {
 
@@ -131,14 +142,18 @@ public class GameObject {
 	
 	
 	
-	
-	
-	// collision detection
+	// method: collide
+	// parameters: otherObject
+	// return type: array of doubles
+	// description: detects collision
 	public double[] collide(GameObject otherObject) {
 		return hitbox.calcCollision(this, otherObject);
 	}
 
-	// updates velocity
+	// method: updateVelocity
+	// parameters: xVelocity and yVelocity
+	// return type: void
+	// description: updates velocity
 	public void updateVelocity(double x, double y) {
 		xVelocity += x;
 		yVelocity += y;
@@ -149,24 +164,31 @@ public class GameObject {
 		return hitbox;
 	}
 
-	// updates location
+	// method: move
+	// parameters: xMove and yMove
+	// return type: void
+	// description: moves the object
 	public void move(double x, double y) {
 		this.x += x;
 		this.y += y;
 	}
 
-	// sets position
+	// method: setPos
+	// parameters: xLocation and yLocation
+	// return type: void
+	// description: sets position of the object
 	public void setPos(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	// draws image
+	// method: draw
+	// parameters: cameraX, cameraY, Component c, Graphics g
+	// return type: void
+	// description: updates the image drawing
 	public void draw(double cameraX, double cameraY, Component c, Graphics g) {
 		int relativeX = (int)x - (int)cameraX;
 		int relativeY =(int)y - (int)cameraY;
-		
-		//g.drawRect((int)relativeX, (int)relativeY, (int)width, (int)height);
 		
 		if(this.animations != null) {
 			if(flipped) {

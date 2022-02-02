@@ -35,7 +35,10 @@ public class ImageResource {
 		this.imageOffset = imageOffset;
 	}
 
-	// loads in the images
+	// method: loadImages
+	// parameters: imagePath and images
+	// return type: void
+	// description: loads in the images
 	private void loadImages(String imagePath, ImageIcon[] images) {
 
 		ClassLoader cldr = this.getClass().getClassLoader();
@@ -51,7 +54,10 @@ public class ImageResource {
 		}
 	}
 
-	// updates the images
+	// method: updateImage
+	// parameters: xDirection, jumping, and isDead
+	// return type: void
+	// description: updates the images' movement/actions
 	public void updateImage(int x_direction, boolean jumping, boolean isDead) {
 
 		imageRefreshCounter++;

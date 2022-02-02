@@ -34,18 +34,29 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 		start();
 	}
 
+	// method: start
+	// parameters: none
+	// return type: void
+	// description: starts the game and timer
 	public void start() throws IOException {
 		game = new Game();
 		timer.start();
 	}
-	// draws image
+
+	// method: paint
+	// parameters: Graphics g
+	// return type: void
+	// description: draws the game
 	public void paint(Graphics g){
 		if(game!=null) {
 			game.getScene().draw(this, g);
 		}
 	}
 
-	// clock listener
+	// method: clock
+	// parameters: none
+	// return type: void
+	// clock listener (updates time, etc.)
 	public void clock() throws IOException {
 		if(keysPressed.size() > 0) {
 			for(String s : keysPressed) {
@@ -57,7 +68,10 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 		this.repaint();
 	}
 
-	// movement (up down left right)
+	// method: keyPressed
+	// parameter: KeyEvent e
+	// return type: void
+	// description: detects keystrokes for movement
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			game.player.move("right");
@@ -83,7 +97,10 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 		}
 	}
 
-	// movement (up down left right)
+	// method: keyReleased
+	// parameter: KeyEvent e
+	// return type: void
+	// description: detects release of keystrokes for movement
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			game.player.friction("right");
@@ -106,6 +123,5 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
-
 	}
 }

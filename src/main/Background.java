@@ -48,7 +48,10 @@ public class Background {
 		this(0,"images/background/raceTrack.png");
 	}
 
-	// draws background
+	// method: draw
+	// parameters: Component c and Graphics g
+	// return type: void
+	// description: Draws the background
 	public void draw(Component c, Graphics g) {
 		g.drawImage(image, (int)x, (int)y, c);
 	}
@@ -77,7 +80,11 @@ public class Background {
 	}
 
 
-
+	// method: createVolatileImage
+	// parameters: the width, the height and whether or not there is transparency in an image, all ints
+	// return type: it returns a blank volatile image so the images can be added to it
+	// description: it create a new blank volatile image
+	
 	private VolatileImage createVolatileImage(int width, int height, int transparency) { GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); GraphicsConfiguration gc = ge.getDefaultScreenDevice().getDefaultConfiguration(); VolatileImage image = null;
 
 	this.width=width;
@@ -91,6 +98,10 @@ public class Background {
 	return image; }
 	
 	
+	// method: loadFromFile
+	// parameters: The url of an image imageURL
+	// return type: it returns a volatile image (an image that renders faster)
+	// description: it gets a volatile image from a file path
 	
 	public VolatileImage loadFromFile(URL imageURL) throws IOException {
 

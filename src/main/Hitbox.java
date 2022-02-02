@@ -19,7 +19,10 @@ public class Hitbox {
 		return coordinates;
 	}
 
-	// calculates the collision
+	// method: calcCollision
+	// parameters: gameObject and otherObject
+	// return type: array of doubles
+	// description: calculates collision between two GameObjects
 	public double[] calcCollision(GameObject gameObject, GameObject otherObject) {
 
 		double[] otherCoordinates = otherObject.getHitBox().getCoords();

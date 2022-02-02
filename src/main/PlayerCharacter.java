@@ -12,8 +12,8 @@ public class PlayerCharacter {
 	protected GameObject object;
 	protected int jumpCounter;
 	protected boolean state;
-	public boolean touchingGround,canJump;
-	public boolean gravity;
+	protected boolean touchingGround,canJump;
+	protected boolean gravity;
 
 	// packed constructor
 	public PlayerCharacter(double x, double y, String name) throws IOException{
@@ -24,7 +24,10 @@ public class PlayerCharacter {
 		jumpCounter = -1;
 	}
 
-	// updates movement
+	// method: move
+	// parameters: movement
+	// return type: void
+	// description: checks for and updates movement of player
 	public void move(String movement) {
 		if(movement == "left") {
 			gravity = true;
@@ -51,7 +54,10 @@ public class PlayerCharacter {
 		}
 	}
 
-	// calculates friction
+	// method: friction
+	// parameters: movement
+	// return type: none
+	// description: calculates and updates friction
 	public void friction(String movement) {
 		if(movement == "left") {
 			object.xVelocity = 0;

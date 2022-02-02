@@ -21,7 +21,10 @@ public class Projectile {
 		this.speed = speed;
 	}
 
-	// updates the position
+	// method: updatePosition
+	// parameters: none
+	// return type: boolean
+	// description: checks if you are able to update the position
 	public boolean updatePosition() {
 		double magnitude = Math.sqrt((movementCoords[0] - object.x) * (movementCoords[0] - object.x) + (movementCoords[1] - object.y) * (movementCoords[1] - object.y));
 		if(magnitude > 2) {

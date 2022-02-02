@@ -23,7 +23,10 @@ public class Enemy {
 		this.speed=speed;
 	}
 
-	// updates position of enemy
+	// method: updatePosition
+	// parameters: none
+	// return type: void
+	// description: updates position of the enemy
 	public void updatePosition() {
 		int i = (direction ? 1 : 0);
 		double magnitude = Math.sqrt((movementCoords[i][0] - object.x) * (movementCoords[i][0] - object.x) + (movementCoords[i][1] - object.y) * (movementCoords[i][1] - object.y));
