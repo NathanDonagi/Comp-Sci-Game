@@ -24,13 +24,15 @@ import javax.swing.JButton;
 
 public class GraphicsMain extends JFrame{
 
+	private static MyAudioPlayer thePlayer;
+
 	public static void main(String[] args) throws IOException {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					Player player = new Player(getClass().getResource("sounds/Woodland Wander.mp3").openStream());
-					player.play();
+					thePlayer = new MyAudioPlayer(".//sounds//music.mp3", true);
+					thePlayer.start();
 
 				} catch (Exception e) {
 					e.printStackTrace();

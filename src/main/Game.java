@@ -77,7 +77,7 @@ public class Game {
 		
 
 		scene2 = new Scene(0, 300, 1885, -280, 2025, -200, scene2Blocks, scene2Enemies, "main/images/background/background.png");
-		scene3 = new Scene(-200, 300, 1850, -100, 2005, 100, scene3Blocks, scene3Enemies, "main/images/background/background.png");
+		scene3 = new Scene(-200, 300, 1850, -3000, 2005, -3000, scene3Blocks, scene3Enemies, "main/images/background/background.png");
 
 		scenes.add(scene1);
 		scenes.add(scene2);
