@@ -31,7 +31,7 @@ public class GraphicsMain extends JFrame{
 			@Override
 			public void run() {
 				try {
-					thePlayer = new MyAudioPlayer(".//sounds//music.mp3", true);
+					thePlayer = new MyAudioPlayer(".//sounds//Woodland Wander.mp3", true);
 					thePlayer.start();
 
 				} catch (Exception e) {
