@@ -57,7 +57,7 @@ public class GraphicsMain extends JFrame{
 		JLabel image = new JLabel(new ImageIcon(tempImage));
 		image.add(start);
 		
-		JButton help = new JButton("LVL 1 - Super Jump: right, left, right, up, LVL 2 - Dash: right, left, right, LVL 3 - Lightning: up, up, down"); 
+		JButton help = new JButton("LVL 1 - Super Jump: right, left, right, up, LVL 2 - Dash: right, left, right, down LVL 3 - Lightning: up, up, down"); 
 		image.add(help);
 		
 		p.add(image);
