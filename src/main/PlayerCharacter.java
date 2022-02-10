@@ -53,7 +53,7 @@ public class PlayerCharacter {
 			if(object.xVelocity > -3)
 				object.xVelocity = -3;
 		}else {
-			channel.noteOff(65);
+			channel.noteOff(70);
 		}
 		
 		if(movement == "right") {
@@ -63,7 +63,7 @@ public class PlayerCharacter {
 			if(object.xVelocity < 3)
 				object.xVelocity = 3;
 		}else {
-			channel.noteOff(55);
+			channel.noteOff(60);
 		}
 		
 		if(movement == "up") {
@@ -83,7 +83,7 @@ public class PlayerCharacter {
 
 		}
 		else {
-			channel.noteOff(45);
+			channel.noteOff(50);
 		}
 	}
 
@@ -94,14 +94,18 @@ public class PlayerCharacter {
 	public void friction(String movement) {
 		if(movement == "left") {
 			object.xVelocity = 0;
+			channel.noteOff(70);
 		}
 		if(movement == "right") {
 			object.xVelocity = 0;
+			channel.noteOff(60);
 		}
 		if(movement == "up") {
+			channel.noteOff(80);
 
 		}
 		if(movement == "down") {
+			channel.noteOff(50);
 
 		}
 	}
