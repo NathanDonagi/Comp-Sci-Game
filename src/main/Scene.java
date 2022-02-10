@@ -33,6 +33,7 @@ public class Scene {
 
 	// packed constructor
 	public Scene(int startingX, int startingY, int endX1, int endY1, int endX2, int endY2, ArrayList<GameObject> blocks, ArrayList<Enemy> enemies, String backgroundPath) throws IOException {
+		
 		this.background1 = new Background(0, backgroundPath);
 		this.background2 = new Background(0, backgroundPath);
 		this.blocks = blocks;

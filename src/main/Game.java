@@ -22,7 +22,7 @@ public class Game {
 	public Game() throws IOException {
 		currentSceneNumber = 0;
 		scenes = new ArrayList<>();
-
+		
 		ArrayList<GameObject> scene1Blocks = new ArrayList<>();
 		scene1Blocks.add(new GameObject(-2000, 400, 4500, 200, "block"));
 		scene1Blocks.add(new GameObject(50, 200, 80, 40, "block"));
